@@ -1,9 +1,24 @@
 [project]
 name = "tinycontracts"
-version = "0.1.0"
-description = "Add your description here"
+version = "0.1.1"
+description = "serve a folder of json/csv/parquet files as a rest api"
 readme = "README.md"
 requires-python = ">=3.11"
+license = "MIT"
+authors = [
+    { name = "Aditya Kumar", email = "adityakuma0308@gmail.com" }
+]
+keywords = ["api", "rest", "json", "csv", "parquet", "fastapi", "cli"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Framework :: FastAPI",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
+]
 dependencies = [
     "fastapi>=0.128.0",
     "pandas>=3.0.0",
@@ -12,3 +27,10 @@ dependencies = [
     "typer>=0.21.1",
     "uvicorn>=0.40.0",
 ]
+
+[project.scripts]
+tc = "tinycontracts.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
