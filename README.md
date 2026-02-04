@@ -1,6 +1,6 @@
 # tinycontracts
 
-Turn JSON, CSV, and Parquet files into REST APIs instantly.
+Turn any folder of JSON, CSV, or Parquet files into a REST API instantly.
 
 ## Install
 
@@ -14,56 +14,48 @@ pip install tinycontracts
 tc ./data
 ```
 
-Or with options:
+That's it. Your files are now API endpoints.
+
+## Options
 
 ```bash
-tc ./data --port 8000 --host 0.0.0.0
+tc ./data -p 8000           # custom port (default: 4242)
+tc ./data -H 0.0.0.0        # expose to network
+tc --version                # show version
 ```
 
 ## Example
 
-Given this structure:
 ```
 data/
-  users.json
-  orders.csv
-  config.json
+  users.json     ->  GET /users
+  orders.csv     ->  GET /orders
+  config.json    ->  GET /config
 ```
 
-You get:
-```
-GET /users          # list all users
-GET /users/1        # get user by id
-GET /orders         # list all orders
-GET /config         # get config
-
-GET /_help          # api documentation
-GET /_schema        # all schemas
-GET /docs           # swagger ui
-```
-
-## Filtering & Pagination
+## Querying
 
 ```bash
-# filter by field
+# filter
 curl "localhost:4242/users?active=true"
 
 # pagination
 curl "localhost:4242/orders?_limit=10&_offset=20"
 
-# sorting
+# sort
 curl "localhost:4242/orders?_sort=-created_at"
 
 # combine
-curl "localhost:4242/orders?status=pending&_limit=5&_sort=-amount"
+curl "localhost:4242/orders?status=pending&_limit=5"
 ```
 
-## Schema
+## Endpoints
 
-```bash
-# all schemas
-curl localhost:4242/_schema
-
-# single resource schema
-curl localhost:4242/users/_schema
-```
+| Endpoint | Description |
+|----------|-------------|
+| `/{resource}` | List all rows |
+| `/{resource}/{id}` | Get by ID |
+| `/{resource}/_schema` | JSON schema |
+| `/_help` | API documentation |
+| `/_schema` | All schemas |
+| `/docs` | Swagger UI |

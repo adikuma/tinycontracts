@@ -1,6 +1,6 @@
 [project]
 name = "tinycontracts"
-version = "0.1.1"
+version = "0.1.2"
 description = "serve a folder of json/csv/parquet files as a rest api"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -29,7 +29,7 @@ dependencies = [
 ]
 
 [project.scripts]
-tc = "tinycontracts.cli:app"
+tc = "tinycontracts.cli:main"
 
 [build-system]
 requires = ["hatchling"]
